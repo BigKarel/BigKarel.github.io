@@ -70,4 +70,4 @@ theme: hexo-theme-yilia
 deploy:
   type: git
   repository: git@github.com:BigKarel/BigKarel.github.io.git
-  branch: master
+  branch: origin
