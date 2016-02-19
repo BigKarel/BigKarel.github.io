@@ -11,12 +11,12 @@ toc: true
 >使用`volley`、`okhttp`、`gson `进行网络层的架构是当前Android端流行的网络框架之一。对Volley进行二次封装，以便适用于`RESTful API`的接口请求，并提高开发效率。这篇文章结合项目从`Volley `，`okhttp`,`restful api`等方面讲解如何进行二次封装。
 
 ### Volley
--------------------
+
 关于Volley的介绍及基本使用可以参考这篇文章[Volley源码解析](http://a.codekk.com/detail/Android/grumoon/Volley%20%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90).
 可以简单总结为Volley适用于数据量小、请求频繁的网络场景（市面上大部分应用都适用）,异步请求网络支持restful api。
 
 使用方法如下：
-
+<!-- more -->
 - 获取RequestQueue。
 
 		//public static RequestQueue newRequestQueue(Context context)
@@ -36,7 +36,7 @@ toc: true
 		request.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 1, 1.0f));
 		
 ### okhttp
------------
+
 网上重写httpstack的例子很多，下面是我扣下的一个加以注释。
 	
 	package com.silversnet.cloudpos.http;
@@ -221,11 +221,11 @@ toc: true
 	}
 
 ### RESTful API
-----------------
+
 RESTful API就是一种接口定义风格，以`resource`为主体，充分使用Http协议的`post `、`put `、`get `、`delete `对resource进行CRUD操作，从形式上约束url格式。
 可以参考[理解RESTful架构](http://www.ruanyifeng.com/blog/2011/09/restful)、[RESTful API 设计指南](http://www.ruanyifeng.com/blog/2014/05/restful_api.html)进行进一步理解.
 ### RequestQueue的封装
-------------------
+
 由于一个应用对应一个请求队列，那么我们的RequestQueue应该也是唯一的。只需要在application初始化时进行初始化就行。代码如下：
 
 	package com.silversnet.cloudpos.http;
@@ -689,7 +689,7 @@ RESTful API就是一种接口定义风格，以`resource`为主体，充分使�
 	  }
 	  
 ### 最后
----
+
 项目中使用Volley已经有一段时间了，今天把代码贴了出来，也算是回顾吧，虽然使用了更适合RESTful api并且效率更高的Retrofit。O(∩_∩)O~
 
 
