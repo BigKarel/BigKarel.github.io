@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Volley在项目中的使用 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Volley在项目中的使用（volley+okhttp+gson）
+使用volley、okhttp、gson进行网络层的架构是当前Android端流行的网络框架之一。对Volley进行二次封装，以便适用于RESTful API的接口请求，并提高开发效率。这篇文章结合项目从Volley，okhttp,restful api等方面讲解如何进行二次封装。
+
+Volley
+关于Volley的介绍及基本使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Volley在项目中的使用">
+<meta property="og:url" content="http://yoursite.com/2016/02/19/Volley在项目中的使用/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Volley在项目中的使用（volley+okhttp+gson）
+使用volley、okhttp、gson进行网络层的架构是当前Android端流行的网络框架之一。对Volley进行二次封装，以便适用于RESTful API的接口请求，并提高开发效率。这篇文章结合项目从Volley，okhttp,restful api等方面讲解如何进行二次封装。
+
+Volley
+关于Volley的介绍及基本使用">
+<meta property="og:updated_time" content="2016-02-19T18:26:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Volley在项目中的使用">
+<meta name="twitter:description" content="Volley在项目中的使用（volley+okhttp+gson）
+使用volley、okhttp、gson进行网络层的架构是当前Android端流行的网络框架之一。对Volley进行二次封装，以便适用于RESTful API的接口请求，并提高开发效率。这篇文章结合项目从Volley，okhttp,restful api等方面讲解如何进行二次封装。
+
+Volley
+关于Volley的介绍及基本使用">
+  
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="undefined" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">John Doe</a></h1>
+		</hgroup>
+
+		
+
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">John Doe</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img src="undefined" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">John Doe</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-Volley在项目中的使用" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/02/19/Volley在项目中的使用/" class="article-date">
+  	<time datetime="2016-02-18T16:00:00.000Z" itemprop="datePublished">2016-02-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Volley在项目中的使用
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/android/">android</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Volley在项目中的使用（volley+okhttp+gson）">Volley在项目中的使用<em>（volley+okhttp+gson）</em></h2><blockquote>
+<p>使用<code>volley</code>、<code>okhttp</code>、<code>gson</code>进行网络层的架构是当前Android端流行的网络框架之一。对Volley进行二次封装，以便适用于<code>RESTful API</code>的接口请求，并提高开发效率。这篇文章结合项目从<code>Volley</code>，<code>okhttp</code>,<code>restful api</code>等方面讲解如何进行二次封装。</p>
+</blockquote>
+<h3 id="Volley">Volley</h3><hr>
+<p>关于Volley的介绍及基本使用可以参考这篇文章<a href="http://a.codekk.com/detail/Android/grumoon/Volley%20%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90" target="_blank" rel="external">Volley源码解析</a>.<br>可以简单总结为Volley适用于数据量小、请求频繁的网络场景（市面上大部分应用都适用）,异步请求网络支持restful api。</p>
+<p>使用方法如下：</p>
+<ul>
+<li><p>获取RequestQueue。</p>
+<pre><code>//public static RequestQueue newRequestQueue(<span class="keyword">Context</span> <span class="keyword">context</span>)
+//public static RequestQueue newRequestQueue(<span class="keyword">Context</span> <span class="keyword">context</span>, HttpStack stack)
+
+RequestQueue mRequestQueue = Volley.newRequestQueue(<span class="keyword">context</span>,stack));
+</code></pre></li>
+<li><p>创建一个Request。<br>  Volley为我们提供了<code>StringRequest</code>、<code>JsonRequest</code>、<code>JsonObjectRequest</code>、<code>JsonArrayRequest</code>、<code>ImageRequest</code>这几种网络请求类以获取Request。对于简单的网络请求及简单的数据交互而言这些方法组员满足需求。但随着业务的复杂化这些原生请求会耗费很多精力去处理数据解析以及参数传递的事情。</p>
+</li>
+<li><p>将创建的请求加入队列，即完成请求。</p>
+<pre><code>mRequestQueue.<span class="function"><span class="title">add</span><span class="params">(Request)</span></span>
+</code></pre></li>
+<li><p>我们还可以对请求设置Tag，及retry.</p>
+<pre><code>request.setTag(SilverConstant.RequestTag.REQUEST_TAG_PUT_JPUSH);
+request.setRetryPolicy(<span class="keyword">new</span> DefaultRetryPolicy(<span class="number">20</span> * <span class="number">1000</span>, <span class="number">1</span>, <span class="number">1.0f</span>));
+</code></pre></li>
+</ul>
+<h3 id="okhttp">okhttp</h3><hr>
+<p>网上重写httpstack的例子很多，下面是我扣下的一个加以注释。</p>
+<pre><code><span class="keyword">package</span> com.silversnet.cloudpos.http;
+
+<span class="keyword">import</span> com.android.volley.AuthFailureError;
+<span class="keyword">import</span> com.android.volley.Request;
+<span class="keyword">import</span> com.android.volley.toolbox.HttpStack;
+<span class="keyword">import</span> com.squareup.okhttp.Call;
+<span class="keyword">import</span> com.squareup.okhttp.Headers;
+<span class="keyword">import</span> com.squareup.okhttp.MediaType;
+<span class="keyword">import</span> com.squareup.okhttp.OkHttpClient;
+<span class="keyword">import</span> com.squareup.okhttp.Protocol;
+<span class="keyword">import</span> com.squareup.okhttp.RequestBody;
+<span class="keyword">import</span> com.squareup.okhttp.Response;
+<span class="keyword">import</span> com.squareup.okhttp.ResponseBody;
+
+<span class="keyword">import</span> org.apache.http.HttpEntity;
+<span class="keyword">import</span> org.apache.http.HttpResponse;
+<span class="keyword">import</span> org.apache.http.ProtocolVersion;
+<span class="keyword">import</span> org.apache.http.StatusLine;
+<span class="keyword">import</span> org.apache.http.entity.BasicHttpEntity;
+<span class="keyword">import</span> org.apache.http.message.BasicHeader;
+<span class="keyword">import</span> org.apache.http.message.BasicHttpResponse;
+<span class="keyword">import</span> org.apache.http.message.BasicStatusLine;
+
+<span class="keyword">import</span> java.io.IOException;
+<span class="keyword">import</span> java.util.Map;
+<span class="keyword">import</span> java.util.concurrent.TimeUnit;
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OkHttpStack</span> <span class="keyword">implements</span> <span class="title">HttpStack</span> {</span>
+    <span class="keyword">private</span> <span class="keyword">final</span> OkHttpClient mClient;
+
+    <span class="keyword">public</span> OkHttpStack(OkHttpClient client) {
+        <span class="keyword">this</span>.mClient = client;
+    }
+
+    <span class="comment">/**
+     * 执行请求,获取请求结果
+     *
+     * <span class="doctag">@param</span> request           the request to perform
+     * <span class="doctag">@param</span> additionalHeaders additional headers to be sent together with
+     *                          {<span class="doctag">@link</span> Request#getHeaders()}
+     * <span class="doctag">@return</span>
+     * <span class="doctag">@throws</span> IOException
+     * <span class="doctag">@throws</span> AuthFailureError
+     */</span>
+    <span class="annotation">@Override</span>
+    <span class="keyword">public</span> HttpResponse performRequest(Request&lt;?&gt; request, Map&lt;String, String&gt; additionalHeaders) throws IOException, AuthFailureError {
+
+        OkHttpClient client = mClient.clone();
+        int timeoutMs = request.getTimeoutMs();
+        client.setConnectTimeout(timeoutMs, TimeUnit.MILLISECONDS);
+        client.setReadTimeout(timeoutMs, TimeUnit.MILLISECONDS);
+        client.setWriteTimeout(timeoutMs, TimeUnit.MILLISECONDS);
+
+        com.squareup.okhttp.Request.Builder okHttpRequestBuilder = new com.squareup.okhttp.Request.Builder();
+        okHttpRequestBuilder.url(request.getUrl());
+
+        Map&lt;String, String&gt; headers = request.getHeaders();
+        for (final String name : headers.keySet()) {
+            okHttpRequestBuilder.addHeader(name, headers.get(name));
+        }
+        <span class="keyword">for</span> (<span class="keyword">final</span> String <span class="string">name :</span> additionalHeaders.keySet()) {
+            <span class="comment">//附加头信息</span>
+            okHttpRequestBuilder.addHeader(name, additionalHeaders.get(name));
+        }
+
+        setConnectionParametersForRequest(okHttpRequestBuilder, request);
+
+        <span class="comment">//创建一条完整的okhttp请求</span>
+        com.squareup.okhttp.Request okHttpRequest = okHttpRequestBuilder.build();
+        Call okHttpCall = client.newCall(okHttpRequest);
+        <span class="comment">//执行请求，获取返回结果</span>
+        Response okHttpResponse = okHttpCall.execute();
+
+        <span class="comment">//由返回码，获取返回状态</span>
+        StatusLine responseStatus = <span class="keyword">new</span> BasicStatusLine(parseProtocol(okHttpResponse.protocol()), okHttpResponse.code(), okHttpResponse.message());
+        BasicHttpResponse response = <span class="keyword">new</span> BasicHttpResponse(responseStatus);
+        response.setEntity(entityFromOkHttpResponse(okHttpResponse));
+
+        Headers responseHeaders = okHttpResponse.headers();
+        <span class="keyword">for</span> (<span class="typename">int</span> i = <span class="number">0</span>, len = responseHeaders.size(); i &lt; len; i++) {
+            <span class="keyword">final</span> String name = responseHeaders.name(i), value = responseHeaders.value(i);
+            <span class="keyword">if</span> (name != <span class="literal">null</span>) {
+                response.addHeader(<span class="keyword">new</span> BasicHeader(name, value));
+            }
+        }
+
+        <span class="keyword">return</span> response;
+    }
+
+    <span class="comment">/**
+     * HttpEntity
+     *
+     * <span class="doctag">@param</span> r Response
+     * <span class="doctag">@return</span>
+     * <span class="doctag">@throws</span> IOException
+     */</span>
+    <span class="keyword">private</span> <span class="keyword">static</span> HttpEntity entityFromOkHttpResponse(Response r) <span class="keyword">throws</span> IOException {
+        BasicHttpEntity entity = <span class="keyword">new</span> BasicHttpEntity();
+        ResponseBody body = r.body();
+
+        entity.setContent(body.byteStream());
+        entity.setContentLength(body.contentLength());
+        entity.setContentEncoding(r.header(<span class="string">"Content-Encoding"</span>));
+
+        <span class="keyword">if</span> (body.contentType() != <span class="literal">null</span>) {
+            entity.setContentType(body.contentType().type());
+        }
+        <span class="keyword">return</span> entity;
+    }
+
+    <span class="comment">/**
+     * 设置请求的连接参数（请求类型，请求体）
+     *
+     * <span class="doctag">@param</span> builder
+     * <span class="doctag">@param</span> request
+     * <span class="doctag">@throws</span> IOException
+     * <span class="doctag">@throws</span> AuthFailureError
+     */</span>
+    <span class="annotation">@SuppressWarnings</span>(<span class="string">"deprecation"</span>)
+    <span class="keyword">private</span> <span class="keyword">static</span> <span class="typename">void</span> setConnectionParametersForRequest(com.squareup.okhttp.Request.Builder builder, Request&lt;?&gt; request) throws IOException, AuthFailureError {
+        switch (request.getMethod()) {
+            case Request.Method.DEPRECATED_GET_OR_POST:
+                <span class="comment">// Ensure backwards compatibility.  Volley assumes a request with a null body is a GET.</span>
+                <span class="typename">byte</span>[] postBody = request.getPostBody();
+                <span class="keyword">if</span> (postBody != <span class="literal">null</span>) {
+                    builder.post(RequestBody.create(MediaType.parse(request.getPostBodyContentType()), postBody));
+                }
+                <span class="keyword">break</span>;
+            <span class="keyword">case</span> Request.Method.<span class="string">GET:</span>
+                builder.get();
+                <span class="keyword">break</span>;
+            <span class="keyword">case</span> Request.Method.<span class="string">DELETE:</span>
+                builder.delete();
+                <span class="keyword">break</span>;
+            <span class="keyword">case</span> Request.Method.<span class="string">POST:</span>
+                builder.post(createRequestBody(request));
+                <span class="keyword">break</span>;
+            <span class="keyword">case</span> Request.Method.<span class="string">PUT:</span>
+                builder.put(createRequestBody(request));
+                <span class="keyword">break</span>;
+            <span class="keyword">case</span> Request.Method.<span class="string">HEAD:</span>
+                builder.head();
+                <span class="keyword">break</span>;
+            <span class="keyword">case</span> Request.Method.<span class="string">OPTIONS:</span>
+                builder.method(<span class="string">"OPTIONS"</span>, <span class="literal">null</span>);
+                <span class="keyword">break</span>;
+            <span class="keyword">case</span> Request.Method.<span class="string">TRACE:</span>
+                builder.method(<span class="string">"TRACE"</span>, <span class="literal">null</span>);
+                <span class="keyword">break</span>;
+            <span class="keyword">case</span> Request.Method.<span class="string">PATCH:</span>
+                builder.patch(createRequestBody(request));
+                <span class="keyword">break</span>;
+<span class="label">            default:</span>
+                <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(<span class="string">"Unknown method type."</span>);
+        }
+    }
+
+    <span class="keyword">private</span> <span class="keyword">static</span> ProtocolVersion parseProtocol(<span class="keyword">final</span> Protocol p) {
+        <span class="keyword">switch</span> (p) {
+            <span class="keyword">case</span> <span class="string">HTTP_1_0:</span>
+                <span class="keyword">return</span> <span class="keyword">new</span> ProtocolVersion(<span class="string">"HTTP"</span>, <span class="number">1</span>, <span class="number">0</span>);
+            <span class="keyword">case</span> <span class="string">HTTP_1_1:</span>
+                <span class="keyword">return</span> <span class="keyword">new</span> ProtocolVersion(<span class="string">"HTTP"</span>, <span class="number">1</span>, <span class="number">1</span>);
+            <span class="keyword">case</span> <span class="string">SPDY_3:</span>
+                <span class="keyword">return</span> <span class="keyword">new</span> ProtocolVersion(<span class="string">"SPDY"</span>, <span class="number">3</span>, <span class="number">1</span>);
+            <span class="keyword">case</span> <span class="string">HTTP_2:</span>
+                <span class="keyword">return</span> <span class="keyword">new</span> ProtocolVersion(<span class="string">"HTTP"</span>, <span class="number">2</span>, <span class="number">0</span>);
+        }
+
+        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalAccessError(<span class="string">"Unkwown protocol"</span>);
+    }
+
+    <span class="keyword">private</span> <span class="keyword">static</span> RequestBody createRequestBody(Request r) <span class="keyword">throws</span> AuthFailureError {
+        <span class="keyword">final</span> <span class="typename">byte</span>[] body = r.getBody();
+        <span class="keyword">if</span> (body == <span class="literal">null</span>)
+            <span class="keyword">return</span> <span class="literal">null</span>;
+
+        <span class="keyword">return</span> RequestBody.create(MediaType.parse(r.getBodyContentType()), body);
+    }
+}
+</code></pre><h3 id="RESTful_API">RESTful API</h3><hr>
+<p>RESTful API就是一种接口定义风格，以<code>resource</code>为主体，充分使用Http协议的<code>post</code>、<code>put</code>、<code>get</code>、<code>delete</code>对resource进行CRUD操作，从形式上约束url格式。<br>可以参考<a href="http://www.ruanyifeng.com/blog/2011/09/restful" target="_blank" rel="external">理解RESTful架构</a>、<a href="http://www.ruanyifeng.com/blog/2014/05/restful_api.html" target="_blank" rel="external">RESTful API 设计指南</a>进行进一步理解.</p>
+<h3 id="RequestQueue的封装">RequestQueue的封装</h3><hr>
+<p>由于一个应用对应一个请求队列，那么我们的RequestQueue应该也是唯一的。只需要在application初始化时进行初始化就行。代码如下：</p>
+<pre><code><span class="keyword">package</span> com.silversnet.cloudpos.http;
+
+<span class="keyword">import</span> android.content.Context;
+
+<span class="keyword">import</span> com.android.volley.Request;
+<span class="keyword">import</span> com.android.volley.RequestQueue;
+<span class="keyword">import</span> com.android.volley.toolbox.Volley;
+<span class="keyword">import</span> com.squareup.okhttp.OkHttpClient;
+
+<span class="comment">/**
+ * Author：zhongshan
+ * Date：
+ * Description：
+ */</span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">VolleyHelper</span> </span>{
+    <span class="keyword">private</span> <span class="keyword">static</span> VolleyHelper mInstance;
+    <span class="keyword">public</span> RequestQueue mRequestQueue;
+
+    <span class="function"><span class="keyword">private</span> <span class="title">VolleyHelper</span><span class="params">()</span> </span>{
+    }
+
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(Context context)</span></span>{
+        <span class="keyword">if</span> (mRequestQueue == <span class="keyword">null</span> ) {
+            <span class="comment">//这里我们可以看出我们使用的HttpStack为自定义的OkhttpStack</span>
+            mRequestQueue = Volley.newRequestQueue(context, <span class="keyword">new</span> OkHttpStack(<span class="keyword">new</span> OkHttpClient()));
+        }
+    }
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> VolleyHelper <span class="title">getInstance</span><span class="params">()</span> </span>{
+        <span class="keyword">if</span> (mInstance == <span class="keyword">null</span>) {
+            mInstance = <span class="keyword">new</span> VolleyHelper();
+        }
+        <span class="keyword">return</span> mInstance;
+    }
+
+    <span class="comment">/**
+     * Returns a Volley request queue for creating network requests
+     *
+     * <span class="doctag">@return</span> {<span class="doctag">@link</span> RequestQueue}
+     */</span>
+    <span class="function"><span class="keyword">public</span> RequestQueue <span class="title">getRequestQueue</span><span class="params">()</span> </span>{
+        <span class="keyword">if</span> (<span class="keyword">null</span> != mRequestQueue) {
+            <span class="keyword">return</span> mRequestQueue;
+        } <span class="keyword">else</span> {
+            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"RequestQueue is not initialized."</span>);
+        }
+    }
+
+    <span class="comment">/**
+     * Adds a request to the Volley request queue
+     *
+     * <span class="doctag">@param</span> request is the request to add to the Volley queue
+     */</span>
+    <span class="keyword">public</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">addRequest</span><span class="params">(Request&lt;T&gt; request)</span> </span>{
+        getRequestQueue().add(request);
+    }
+    <span class="comment">/**
+     * Adds a request to the Volley request queue
+     *
+     * <span class="doctag">@param</span> request is the request to add to the Volley queuest
+     * <span class="doctag">@param</span> tag is the tag identifying the request
+     */</span>
+    <span class="keyword">public</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">addRequest</span><span class="params">(Request&lt;T&gt; request, String tag)</span> </span>{
+        request.setTag(tag);
+        getRequestQueue().add(request);
+    }
+    <span class="comment">/**
+     * Cancels all the request in the Volley queue for a given tag
+     *
+     * <span class="doctag">@param</span> tag associated with the Volley requests to be cancelled
+     */</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">cancelAllRequests</span><span class="params">(String tag)</span> </span>{
+        <span class="keyword">if</span> (getRequestQueue() != <span class="keyword">null</span>) {
+            getRequestQueue().cancelAll(tag);
+        }
+    }
+}
+</code></pre><p>我们只需要在Application中进行 VolleyHelper.getInstance().init(this);，在请求时调用VolleyHelper.getInstance().add()即可。</p>
+<h3 id="Request_的封装">Request 的封装</h3><p>这部分是最核心部分，由代码可以看出是<code>Request&lt;T&gt;</code>的子类，使用<code>Builder模式</code>传入参数。使用<code>HttpSecurityManager</code>去处理URL中的参数.<br>这里的参数分为两类：path variables和query parameters：</p>
+<pre><code><span class="regexp">/api/resource/</span>{p1}<span class="regexp">/subresource/</span>{p2}?q1=<span class="number">1</span>&amp;q2=<span class="number">2</span>
+</code></pre><ul>
+<li>path variables: p1, p2</li>
+<li>query parameters: q1, q2</li>
+</ul>
+<p>封装Request的主要组成类为<code>Gson</code>(处理解析)、<code>HttpSecurityManager</code>和<code>SecurityUtil</code>处理url参数。</p>
+<p>代码如下</p>
+<pre><code><span class="keyword">package</span> com.silversnet.cloudpos.http;
+
+<span class="keyword">import</span> android.util.Log;
+
+<span class="keyword">import</span> com.android.volley.AuthFailureError;
+<span class="keyword">import</span> com.android.volley.NetworkResponse;
+<span class="keyword">import</span> com.android.volley.ParseError;
+<span class="keyword">import</span> com.android.volley.Request;
+<span class="keyword">import</span> com.android.volley.Response;
+<span class="keyword">import</span> com.android.volley.toolbox.HttpHeaderParser;
+<span class="keyword">import</span> com.google.gson.Gson;
+<span class="keyword">import</span> com.google.gson.JsonSyntaxException;
+<span class="keyword">import</span> com.silversnet.cloudpos.SilverApplication;
+<span class="keyword">import</span> com.silversnet.cloudpos.exception.SilverException;
+<span class="keyword">import</span> com.silversnet.cloudpos.manager.PaymentManager;
+<span class="keyword">import</span> com.silversnet.cloudpos.util.DateUtil;
+<span class="keyword">import</span> com.silversnet.cloudpos.util.SecurityUtil;
+
+<span class="keyword">import</span> java.io.UnsupportedEncodingException;
+<span class="keyword">import</span> java.util.<span class="keyword">HashMap</span>;
+<span class="keyword">import</span> java.util.Map;
+
+<span class="comment">/**
+ * Author：zhongshan
+ * Date：
+ * Description：
+ */</span>
+<span class="keyword">public</span> class GsonRequest&lt;T&gt; extends Request&lt;T&gt; {
+
+<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">String</span> CLASSNAME = <span class="string">"GsonRequest"</span>;
+
+<span class="keyword">private</span> <span class="keyword">final</span> Gson gson = <span class="keyword">new</span> Gson();
+<span class="keyword">private</span> <span class="keyword">final</span> Class&lt;T&gt; clazz;
+<span class="keyword">private</span> <span class="keyword">final</span> Map&lt;<span class="keyword">String</span>, <span class="keyword">String</span>&gt; headers;
+<span class="keyword">private</span> <span class="keyword">final</span> Response.Listener&lt;T&gt; listener;
+<span class="keyword">private</span> <span class="keyword">String</span> params;
+<span class="keyword">private</span> Map&lt;<span class="keyword">String</span>, <span class="keyword">String</span>&gt; pathVars;
+<span class="keyword">private</span> Map&lt;<span class="keyword">String</span>, <span class="keyword">String</span>&gt; queryParams;
+<span class="keyword">private</span> <span class="built_in">int</span> statusCode;
+
+<span class="comment">/**
+ * Make a GET request and return a parsed object from JSON.
+ *
+ * @param url    URL of the request to make
+ * @param clazz  Relevant class object, for Gson's reflection
+ * @param params Map of request params
+ */</span>
+<span class="keyword">public</span> GsonRequest(<span class="keyword">String</span> url, Class&lt;T&gt; clazz, <span class="keyword">String</span> params, Response.Listener&lt;T&gt; listener, Response.ErrorListener errorListener) {
+    <span class="keyword">super</span>(Method.GET, url, errorListener);
+    <span class="keyword">this</span>.clazz = clazz;
+    <span class="keyword">this</span>.headers = <span class="keyword">null</span>;
+    <span class="keyword">this</span>.params = params;
+    <span class="keyword">this</span>.listener = listener;
+}
+
+<span class="comment">/**
+ * Make a request and return a parsed object from JSON.
+ *
+ * @param url     URL of the request to make
+ * @param clazz   Relevant class object, for Gson's reflection
+ * @param headers Map of request headers
+ */</span>
+<span class="keyword">public</span> GsonRequest(<span class="built_in">int</span> method, <span class="keyword">String</span> url, Class&lt;T&gt; clazz, Map&lt;<span class="keyword">String</span>, <span class="keyword">String</span>&gt; headers, <span class="keyword">String</span> params, Response.Listener&lt;T&gt; listener, Response.ErrorListener errorListener) {
+    <span class="keyword">super</span>(method, url, errorListener);
+    <span class="keyword">this</span>.clazz = clazz;
+    <span class="keyword">this</span>.headers = headers;
+    <span class="keyword">this</span>.params = params;
+    <span class="keyword">this</span>.listener = listener;
+}
+
+<span class="comment">/**
+ * @param builder requestBuilder
+ */</span>
+<span class="keyword">public</span> GsonRequest(RequestBuilder builder) {
+    <span class="keyword">super</span>(builder.method, builder.getUrl(), builder.errorListener);
+    clazz = builder.clazz;
+    <span class="keyword">if</span> (builder.headers.<span class="built_in">size</span>() &gt; <span class="number">0</span>) {
+        headers = builder.headers;
+    } <span class="keyword">else</span> {
+        headers = builder.httpSecurityManager.getHeaders();
+    }
+    listener = builder.successListener;
+    params = builder.params;
+    <span class="keyword">this</span>.pathVars = builder.httpSecurityManager.getPathVars();
+    <span class="keyword">this</span>.queryParams = builder.httpSecurityManager.getQueryParams();
+}
+
+@Override
+<span class="keyword">public</span> Map&lt;<span class="keyword">String</span>, <span class="keyword">String</span>&gt; getHeaders() <span class="keyword">throws</span> AuthFailureError {
+    <span class="keyword">try</span> {
+        <span class="keyword">long</span> timestamp = DateUtil.timestamp();
+        <span class="comment">// <span class="doctag">TODO:</span> consider getting appKey from database per cposId</span>
+        <span class="keyword">String</span> appKey = SilverApplication.props.getProperty(<span class="string">"cpos.appKey"</span>);
+        <span class="keyword">String</span> hash = SecurityUtil.md5(getPathVarStr() + getParamStr() + timestamp + appKey);
+        headers.put(<span class="string">"cposId"</span>, PaymentManager.getInstance().getCposId());
+        headers.put(<span class="string">"timestamp"</span>, <span class="keyword">String</span>.valueOf(timestamp));
+        headers.put(<span class="string">"hash"</span>, hash);
+    } <span class="keyword">catch</span> (SilverException e) {
+        Log.e(CLASSNAME, <span class="string">"Failed to generate request headers"</span>, e);
+        <span class="keyword">throw</span> <span class="keyword">new</span> AuthFailureError();
+    }
+
+    <span class="keyword">return</span> headers;
+}
+
+@Override
+<span class="keyword">protected</span> <span class="keyword">void</span> deliverResponse(T response) {
+    listener.onResponse(response);
+}
+
+<span class="comment">/**
+ * 请求参数组装：重写getBody方法
+ *
+ * @throws AuthFailureError
+ */</span>
+@Override
+<span class="keyword">public</span> <span class="built_in">byte</span>[] getBody() <span class="keyword">throws</span> AuthFailureError {
+    <span class="keyword">return</span> params == <span class="keyword">null</span> ? <span class="keyword">super</span>.getBody() : params.getBytes();
+}
+
+<span class="keyword">public</span> <span class="built_in">int</span> getStatusCode() {
+    <span class="keyword">return</span> statusCode;
+}
+
+@Override
+<span class="keyword">protected</span> Response&lt;T&gt; parseNetworkResponse(NetworkResponse response) {
+    <span class="keyword">String</span> parsed;
+    statusCode = response.statusCode;
+    Log.e(<span class="string">"StatusCode： "</span>, statusCode + <span class="string">""</span>);
+    <span class="keyword">try</span> {
+        parsed = <span class="keyword">new</span> <span class="keyword">String</span>(response.data, <span class="string">"UTF-8"</span>);
+        Log.e(<span class="string">"Response： "</span>, parsed);
+        <span class="keyword">if</span> (clazz == <span class="keyword">null</span>) {
+            <span class="keyword">return</span> (Response&lt;T&gt;) Response.success(parsed, HttpHeaderParser.parseCacheHeaders(response));
+        } <span class="keyword">else</span> {
+            <span class="keyword">return</span> Response.success(gson.fromJson(parsed, clazz), HttpHeaderParser.parseCacheHeaders(response));
+        }
+    } <span class="keyword">catch</span> (UnsupportedEncodingException e) {
+        <span class="keyword">return</span> Response.error(<span class="keyword">new</span> ParseError(e));
+    } <span class="keyword">catch</span> (JsonSyntaxException e) {
+        <span class="keyword">return</span> Response.error(<span class="keyword">new</span> ParseError(e));
+    } <span class="keyword">catch</span> (Exception e) {
+        <span class="keyword">return</span> Response.error(<span class="keyword">new</span> ParseError(e));
+    }
+}
+
+<span class="keyword">public</span> <span class="keyword">static</span> class RequestBuilder {
+    <span class="keyword">private</span> SecurityManager securityManager = <span class="keyword">new</span> SecurityManager();
+    <span class="keyword">private</span> <span class="built_in">int</span> method = Method.GET;
+    <span class="keyword">private</span> <span class="keyword">String</span> url;
+    <span class="keyword">private</span> <span class="keyword">String</span> domain;
+    <span class="keyword">private</span> Class clazz;
+    <span class="keyword">private</span> Response.Listener successListener;
+    <span class="keyword">private</span> Response.ErrorListener errorListener;
+    <span class="keyword">private</span> Map&lt;<span class="keyword">String</span>, <span class="keyword">String</span>&gt; headers = <span class="keyword">new</span> <span class="keyword">HashMap</span>&lt;&gt;();
+    <span class="keyword">private</span> <span class="keyword">String</span> params;
+    <span class="keyword">private</span> HttpSecurityManager httpSecurityManager = <span class="keyword">new</span> HttpSecurityManager();
+
+    <span class="comment">/**
+     * 添加域名
+     */</span>
+    <span class="keyword">public</span> RequestBuilder domain(<span class="keyword">String</span> domain) {
+        <span class="keyword">this</span>.domain = domain;
+        <span class="keyword">return</span> <span class="keyword">this</span>;
+    }
+
+    <span class="comment">/**
+     * 添加class
+     */</span>
+    <span class="keyword">public</span> RequestBuilder clazz(Class clazz) {
+        <span class="keyword">this</span>.clazz = clazz;
+        <span class="keyword">return</span> <span class="keyword">this</span>;
+    }
+
+    <span class="comment">/**
+     * request success
+     */</span>
+    <span class="keyword">public</span> RequestBuilder successListener(Response.Listener successListener) {
+        <span class="keyword">this</span>.successListener = successListener;
+        <span class="keyword">return</span> <span class="keyword">this</span>;
+    }
+
+    <span class="comment">/**
+     * request error
+     */</span>
+    <span class="keyword">public</span> RequestBuilder errorListener(Response.ErrorListener errorListener) {
+        <span class="keyword">this</span>.errorListener = errorListener;
+        <span class="keyword">return</span> <span class="keyword">this</span>;
+    }
+
+    <span class="comment">/**
+     * get request
+     */</span>
+    <span class="keyword">public</span> RequestBuilder <span class="built_in">get</span>(<span class="keyword">String</span> url) {
+        <span class="keyword">this</span>.url = url;
+        <span class="keyword">this</span>.method = Method.GET;
+        <span class="keyword">return</span> <span class="keyword">this</span>;
+    }
+
+    <span class="comment">/**
+     * post request
+     */</span>
+    <span class="keyword">public</span> RequestBuilder post(<span class="keyword">String</span> url) {
+        <span class="keyword">this</span>.url = url;
+        <span class="keyword">this</span>.method = Method.POST;
+        <span class="keyword">return</span> <span class="keyword">this</span>;
+    }
+
+    <span class="comment">/**
+     * put request
+     */</span>
+    <span class="keyword">public</span> RequestBuilder put(<span class="keyword">String</span> url) {
+        <span class="keyword">this</span>.url = url;
+        <span class="keyword">this</span>.method = Method.PUT;
+        <span class="keyword">return</span> <span class="keyword">this</span>;
+    }
+
+    <span class="comment">/**
+     * delete request
+     */</span>
+    <span class="keyword">public</span> RequestBuilder delete(<span class="keyword">String</span> url) {
+        <span class="keyword">this</span>.url = url;
+        <span class="keyword">this</span>.method = Method.DELETE;
+        <span class="keyword">return</span> <span class="keyword">this</span>;
+    }
+
+    <span class="comment">/**
+     * add request headers
+     */</span>
+    <span class="keyword">public</span> RequestBuilder headers(Map&lt;<span class="keyword">String</span>, <span class="keyword">String</span>&gt; headers) {
+        <span class="keyword">this</span>.headers = headers;
+        <span class="keyword">return</span> <span class="keyword">this</span>;
+    }
+
+    <span class="comment">/**
+     * add pathVars
+     */</span>
+    <span class="keyword">public</span> RequestBuilder addPathVar(<span class="keyword">String</span> <span class="variable">key</span>, <span class="keyword">String</span> value) {
+        httpSecurityManager.addPathVar(<span class="variable">key</span>, value);
+        <span class="keyword">return</span> <span class="keyword">this</span>;
+    }
+
+    <span class="comment">/**
+     * add queryParams
+     */</span>
+    <span class="keyword">public</span> RequestBuilder addQueryParam(<span class="keyword">String</span> <span class="variable">key</span>, <span class="keyword">String</span> value) {
+        httpSecurityManager.addQueryParam(<span class="variable">key</span>, value);
+        <span class="keyword">return</span> <span class="keyword">this</span>;
+    }
+
+    <span class="comment">/**
+     * params
+     */</span>
+    <span class="keyword">public</span> RequestBuilder params(<span class="keyword">String</span> params) {
+        <span class="keyword">this</span>.params = params != <span class="keyword">null</span> ? params : <span class="keyword">null</span>;
+        <span class="keyword">return</span> <span class="keyword">this</span>;
+    }
+
+    <span class="keyword">private</span> <span class="keyword">String</span> getUrl() {
+        <span class="keyword">String</span> url = <span class="keyword">this</span>.domain + <span class="keyword">this</span>.url;
+        Map&lt;<span class="keyword">String</span>, <span class="keyword">String</span>&gt; paths = httpSecurityManager.getPathVars();
+        <span class="comment">/**替换{pathkey}-path variables*/</span>
+        <span class="keyword">for</span> (<span class="keyword">String</span> pathKey : paths.keySet()) {
+            <span class="keyword">String</span> pathVal = paths.<span class="built_in">get</span>(pathKey);
+            url = url.replace(<span class="string">"{"</span> + pathKey + <span class="string">"}"</span>, pathVal);
+        }
+        Map&lt;<span class="keyword">String</span>, <span class="keyword">String</span>&gt; params = httpSecurityManager.getQueryParams();
+        <span class="comment">/**替换?q1=1&amp;q2=2-query parameters*/</span>
+        url += SecurityUtil.generateQueryString(params);
+        <span class="keyword">return</span> url;
+    }
+
+    <span class="keyword">public</span> GsonRequest build() {
+        <span class="keyword">return</span> <span class="keyword">new</span> GsonRequest(<span class="keyword">this</span>);
+    }
+}
+
+<span class="keyword">private</span> <span class="keyword">String</span> getPathVarStr() {
+    <span class="keyword">String</span> pathVarString = SecurityUtil.pathVarString(pathVars);
+    <span class="keyword">return</span> pathVarString;
+}
+
+<span class="keyword">private</span> <span class="keyword">String</span> getParamStr() {
+    <span class="keyword">String</span> paramString = SecurityUtil.sortedValString(queryParams);
+    <span class="keyword">return</span> paramString;
+}
+
+@Override
+<span class="keyword">public</span> <span class="keyword">String</span> getBodyContentType() {
+    <span class="keyword">return</span> <span class="string">"application/json; charset=utf-8"</span>;
+}
+}
+</code></pre><p>其中我们无法通过header去控制ContentType，如果不重写getBodyContentType()方法，会默认为表单提交。<br>创建形式为：</p>
+<pre><code>GsonRequest requestPaymentTypeList = <span class="keyword">new</span> GsonRequest.RequestBuilder().domain(SilverConstant
+                .BASE_REQUEST_DOMAIN)
+                .<span class="keyword">get</span>(SilverConstant.RequestPath.GET_PAYMENT_TYPE_LIST)
+                .errorListener(<span class="keyword">new</span> <span class="built_in">Response</span>.ErrorListener() {
+                    @Override
+                    <span class="keyword">public</span> void onErrorResponse(VolleyError <span class="keyword">error</span>) {
+                        syncSuccess = <span class="literal">false</span>;
+                        verifyRequestsComplete();
+                    }
+                })
+                .successListener(<span class="keyword">new</span> <span class="built_in">Response</span>.Listener() {
+                    @Override
+                    <span class="keyword">public</span> void onResponse(Object <span class="built_in">response</span>) {
+                        <span class="keyword">if</span> (<span class="built_in">response</span> != <span class="literal">null</span>) {
+                            PaymentTypeDao.getInstance(context).save((<span class="built_in">String</span>) <span class="built_in">response</span>);
+                        }
+                        verifyRequestsComplete();
+                    }
+                })
+                .build();
+        requestPaymentTypeList .setTag(SilverConstant.RequestTag.REQUEST_TAG_GET_PAYMENT_TYPE_LIST);
+        requestPaymentTypeList .setRetryPolicy(<span class="keyword">new</span> DefaultRetryPolicy(<span class="number">20</span> * <span class="number">1000</span>, <span class="number">1</span>, <span class="number">1.0</span>f));
+        VolleyHelper.getInstance().addRequest(requestPaymentTypeList);
+</code></pre><p>其实我们可以对请求进行进一步封装，并将异步请求的结果通过<code>ResponseListener</code>接口处理。</p>
+<pre><code><span class="keyword">public</span> <span class="interface"><span class="keyword">interface</span> ResponseListener </span>{
+    <span class="built_in">void</span> ResponseSuccess(<span class="built_in">Object</span> response, <span class="built_in">String</span> tag);
+    <span class="built_in">void</span> ResponseError(VolleyError error, <span class="built_in">String</span> tag);
+}
+</code></pre><p>进一步封装如下：</p>
+<pre><code>public <span class="keyword">static</span> <span class="type">GsonRequest</span> doRequest(<span class="type">String</span> url, <span class="type">int</span> <span class="keyword">method</span>, <span class="type">Map</span>&lt;<span class="type">String</span>, <span class="type">String</span>&gt; pathVars,
+      <span class="type">Map</span>&lt;<span class="type">String</span>, <span class="type">String</span>&gt; queryParams, <span class="type">String</span> params, <span class="type">Class</span> clazz,
+      final <span class="type">ResponseListener</span> responseListener, final <span class="type">String</span> tag) {
+
+    <span class="type">Map</span>&lt;<span class="type">String</span>, <span class="type">String</span>&gt; headers = getHeaders(pathVars, queryParams);
+
+    <span class="type">BaseRequest</span> request = new <span class="type">BaseRequest</span>.<span class="type">RequestBuilder</span>().domain(<span class="type">ApiConstants</span>.<span class="type">BASE_REQUEST_DOMAIN</span>)
+        .url(url)
+        .<span class="keyword">method</span>(<span class="keyword">method</span>)
+        .headers(headers)
+        .addPaths(pathVars)
+        .addParams(queryParams)
+        .params(params)
+        .clazz(clazz)
+        .successListener(new <span class="type">Response</span>.<span class="type">Listener</span>() {
+          @<span class="type">Override</span> public <span class="type">void</span> onResponse(<span class="type">Object</span> response) {
+            <span class="type">Object</span> msgObject = null;
+            <span class="keyword">try</span> {
+              msgObject = <span class="type">ResponseParseFactory</span>.createMsgObject(tag, response);
+            }catch (<span class="type">Exception</span> e){
+              e.printStackTrace();
+            }
+            responseListener.<span class="type">ResponseSuccess</span>(msgObject, tag);
+          }
+        })
+        .errorListener(new <span class="type">Response</span>.<span class="type">ErrorListener</span>() {
+          @<span class="type">Override</span> public <span class="type">void</span> onErrorResponse(<span class="type">VolleyError</span> error) {
+            responseListener.<span class="type">ResponseError</span>(error, tag);
+          }
+        })
+        .build();
+    request.setTag(tag);
+    request.setRetryPolicy(new <span class="type">DefaultRetryPolicy</span>(<span class="number">20</span> * <span class="number">1000</span>, <span class="number">1</span>, <span class="number">1</span>.<span class="number">0</span>f));
+    <span class="type">HttpRequestHelper</span>.getInstance().addRequest(request);
+    <span class="keyword">return</span> request;
+  }
+</code></pre><h3 id="最后">最后</h3><hr>
+<p>项目中使用Volley已经有一段时间了，今天把代码贴了出来，也算是回顾吧，虽然使用了更适合RESTful api并且效率更高的Retrofit。O(∩_∩)O~</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/02/20/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/11/30/android-gradle-summary/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">gradle在android中的用法概要</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 John Doe
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script>
+	var yiliaConfig = {
+		fancybox: undefined,
+		mathjax: undefined,
+		animate: undefined,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: undefined
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+  </div>
+</body>
+</html>

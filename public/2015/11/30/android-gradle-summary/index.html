@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>gradle在android中的用法概要 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="project中的build.gradle
+buildscript: 配置驱动build的代码，声明在Maven中央仓库，取classpath dependency，即android plugin for gradle xxx
+apply plugin：指明用到的plugin是android，就像在前面java程序中，用的plugin是java一样。
+android{…} 中配置了所有androi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="gradle在android中的用法概要">
+<meta property="og:url" content="http://yoursite.com/2015/11/30/android-gradle-summary/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="project中的build.gradle
+buildscript: 配置驱动build的代码，声明在Maven中央仓库，取classpath dependency，即android plugin for gradle xxx
+apply plugin：指明用到的plugin是android，就像在前面java程序中，用的plugin是java一样。
+android{…} 中配置了所有androi">
+<meta property="og:updated_time" content="2015-11-30T06:51:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="gradle在android中的用法概要">
+<meta name="twitter:description" content="project中的build.gradle
+buildscript: 配置驱动build的代码，声明在Maven中央仓库，取classpath dependency，即android plugin for gradle xxx
+apply plugin：指明用到的plugin是android，就像在前面java程序中，用的plugin是java一样。
+android{…} 中配置了所有androi">
+  
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="undefined" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">John Doe</a></h1>
+		</hgroup>
+
+		
+
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">John Doe</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img src="undefined" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">John Doe</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-android-gradle-summary" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/11/30/android-gradle-summary/" class="article-date">
+  	<time datetime="2015-11-30T01:44:48.000Z" itemprop="datePublished">2015-11-30</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      gradle在android中的用法概要
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gradle/">gradle</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/android/">android</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="project中的build-gradle">project中的build.gradle</h4><ul>
+<li>buildscript: 配置驱动build的代码，声明在Maven中央仓库，取classpath dependency，即android plugin for gradle xxx</li>
+<li>apply plugin：指明用到的plugin是android，就像在前面java程序中，用的plugin是java一样。</li>
+<li>android{…} 中配置了所有android构建的参数，这里也是android dsl的入口点。</li>
+<li>repositories：配置依赖管理的服务器，默认jcenter(),可以添加其他服务器，如MavenCenter().</li>
+<li>dependencies 指具体依赖什么库，用classpath指明</li>
+<li>依赖jcenter服务器中的gradle库，包名：”com.android.tools.build”,版本x.x.x</li>
+</ul>
+<a id="more"></a>
+<pre><code><span class="keyword">buildscript</span> {
+    <span class="keyword">repositories</span> {
+        jcenter()
+    }
+    <span class="keyword">dependencies</span> {
+        <span class="keyword">classpath</span> <span class="string">'com.android.tools.build:gradle:1.3.0'</span>
+    }
+}
+</code></pre><h4 id="model中的build-gradle">model中的build.gradle</h4><h5 id="基本配置说明">基本配置说明</h5><ul>
+<li>apply plugin:’com.android.application’ ，表示添加插件，application标识这个Model为应用的主程序，如果Model为一个库，那么apply plugin:’com.android.library’</li>
+<li><p>dependencies: 项目依赖，可以远程依赖，亦可以本地依赖。</p>
+<pre><code><span class="keyword">dependencies</span> {
+    <span class="keyword">compile</span> <span class="keyword">fileTree</span>(dir: <span class="string">'libs'</span>, <span class="keyword">include</span>: [<span class="string">'*.jar'</span>])
+    testCompile <span class="string">'junit:junit:4.12'</span>
+    <span class="keyword">compile</span> <span class="string">'com.android.support:appcompat-v7:23.1.0'</span>
+    <span class="keyword">compile</span> <span class="string">'com.android.support:design:23.1.0'</span>
+    <span class="keyword">compile</span> <span class="keyword">project</span>(<span class="string">':library'</span>)
+}
+</code></pre><ul>
+<li>comple fileTree(dir: ‘libs’, include: [‘*.jar’])表明编译时依赖libs文件下所有jar文件</li>
+<li>compile project(‘:library’)表明依赖本地名为library的Model库</li>
+<li>compile ‘com.android.support:design:23.1.0’ 表明依赖远程库</li>
+</ul>
+</li>
+</ul>
+<h5 id="android{…}中的配置">android{…}中的配置</h5><pre><code><span class="title">android</span> {
+    <span class="title">complieSdkVersion</span> xx
+    buildToolsVersion xx
+
+    defaultConfig {    
+    }
+
+    <span class="title">buildTypes</span> {
+    }
+
+    <span class="title">compileOptions</span> {
+    }
+
+    <span class="title">sourceSets</span> {
+    }
+
+    <span class="title">lintOptions</span> {
+    }
+
+    <span class="title">productFlavors</span> {
+        <span class="title">flavors1</span> {
+        }
+        <span class="title">flavors1</span> {
+        }
+    }
+
+    <span class="title">signingConfigs</span> {
+        <span class="title">release</span> {
+            <span class="title">storeFile</span> file(<span class="string">"x.keystore"</span>)
+            storePassword <span class="string">"xxx"</span>
+            keyAlias <span class="string">"xxx"</span>
+            keyPassword <span class="string">"xxx"</span>
+        }
+        <span class="built_in">debug</span> {
+        }
+    }
+}
+</code></pre><ul>
+<li><p>defaultConfig: 默认配置，相当于全局配置，buildType自动继承</p>
+<pre><code>defaultConfig {
+    applicationId <span class="string">"com.xxx"</span>  (非必须配置，库类型的model无此配置)
+    minSdkVersion <span class="number">14</span>
+    targetSdkVersion <span class="number">23</span>
+    versionCode <span class="number">1</span>
+    versionName <span class="string">"1.0"</span>    
+}
+</code></pre></li>
+<li><p>buildType：编译配置，有release 亦有debug,配置相同</p>
+<pre><code><span class="title">release</span> {
+       <span class="title">buildConfigField</span> <span class="string">"boolean"</span>, <span class="string">"LOG_DEBUG"</span>, <span class="string">"false"</span>
+       minifyEnabled <span class="built_in">false</span>
+       shrinkResources <span class="built_in">true</span>
+       proguardFiles getDefaultProguardFile(<span class="string">'proguard-android.txt'</span>), <span class="string">'proguard-rules.pro'</span>
+       signingConfig signingConfigs.release
+   }
+<span class="built_in">debug</span> {
+          <span class="title">buildConfigField</span> <span class="string">"boolean"</span>, <span class="string">"LOG_DEBUG"</span>, <span class="string">"true"</span>
+       debuggable <span class="built_in">true</span>
+       shrinkResources <span class="built_in">true</span>
+       signingConfig signingConfigs.release
+   }
+</code></pre></li>
+<li><p>compileOptions：编译选项，进行java版本配置</p>
+<pre><code><span class="component">compileOptions {
+    sourceCompatibility JavaVersion<span class="string">.VERSION_1_7</span>
+    targetCompatibility JavaVersion<span class="string">.VERSION_1_7</span>
+}</span>
+</code></pre></li>
+<li><p>sourceSets：源码设置，多为Ecipse中迁移过来的代码</p>
+<pre><code><span class="atom">sourceSets</span> {
+    <span class="atom">main</span> {
+        <span class="atom">manifest</span>.<span class="atom">srcFile</span> <span class="string">'AndroidManifest.xml'</span>
+        <span class="atom">java</span>.<span class="atom">srcDirs</span> = [<span class="string">'src'</span>]
+        <span class="atom">resource</span>.<span class="atom">srcDirs</span> = [<span class="string">'src'</span>]
+        <span class="atom">aidl</span>.<span class="atom">srcDirs</span> = [<span class="string">'src'</span>]
+        <span class="atom">renderscript</span>.<span class="atom">srcDirs</span> = [<span class="string">'src'</span>]
+        <span class="atom">res</span>.<span class="atom">srcDirs</span> = [<span class="string">'res'</span>]
+        <span class="atom">assets</span>.<span class="atom">srcDirs</span> = [<span class="string">'assets'</span>]
+        <span class="atom">jniLibs</span>.<span class="atom">srcDirs</span> = [<span class="string">'libs'</span>]  （引用“.<span class="atom">so</span>”文件式的用法）
+    }
+}
+</code></pre></li>
+<li><p>lintOptions：设置编译的lint开关。程序在build时执行lint检查，有错误则停止构建。设置abortOnError false 关掉</p>
+</li>
+<li><p>productFlavors：发布到不同渠道，且不同渠道中的包名不同，如下配置。也可以设置不同的AndroidManifest.xml文件。</p>
+<pre><code>productFlavors {
+    flavor1 {
+        packageName=<span class="symbol">'com</span>.example.application1'
+        manifest.srcFile <span class="symbol">'exampleapk</span>/<span class="type">AndroidManifest1</span>.xml'
+    }
+    flavor2 {
+        packageName=<span class="symbol">'com</span>.example.application2'
+        manifest.srcFile <span class="symbol">'exampleapk</span>/<span class="type">AndroidManifest2</span>.xml'
+    }
+}
+</code></pre></li>
+<li><p>signingConfigs——包签名的配置，可以配置具体的签名文件，签名密码等，可不用自己创建，点击build/generate signed apk，创建或选择签名文件，设置并记住密码。一般用读取配置文件的方式。</p>
+<pre><code>Properties props = <span class="built_in">new</span> Properties()
+props.<span class="built_in">load</span>(<span class="built_in">new</span> FileInputStream(<span class="built_in">file</span>(<span class="string">"signing.properties"</span>)))
+......
+signingConfigs {
+    release {
+        keyAlias props[<span class="string">'KEY_ALIAS'</span>]
+        keyPassword props[<span class="string">'KEY_PASSWORD'</span>]
+        storeFile <span class="built_in">file</span>(props[<span class="string">'KEYSTORE_FILE'</span>])
+        storePassword props[<span class="string">'KEYSTORE_PASSWORD'</span>]
+    }
+}
+</code></pre></li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/02/19/Volley在项目中的使用/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Volley在项目中的使用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/11/25/android-development-ocumentation/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android客户端开发文档</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 John Doe
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script>
+	var yiliaConfig = {
+		fancybox: undefined,
+		mathjax: undefined,
+		animate: undefined,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: undefined
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+  </div>
+</body>
+</html>

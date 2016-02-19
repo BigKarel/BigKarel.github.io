@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Android客户端开发文档 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="version：1.02015.11.12author：zhongshan
+
+开发环境规范
+开发工具：Android Studio
+编码：UTF-8
+代码格式化：Code Style –&amp;gt;  Right marging:120，选中Wrap when typing reaches right margin ；java Wrapping and Braces Keep when reforma">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android客户端开发文档">
+<meta property="og:url" content="http://yoursite.com/2015/11/25/android-development-ocumentation/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="version：1.02015.11.12author：zhongshan
+
+开发环境规范
+开发工具：Android Studio
+编码：UTF-8
+代码格式化：Code Style –&amp;gt;  Right marging:120，选中Wrap when typing reaches right margin ；java Wrapping and Braces Keep when reforma">
+<meta property="og:updated_time" content="2015-11-24T20:51:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android客户端开发文档">
+<meta name="twitter:description" content="version：1.02015.11.12author：zhongshan
+
+开发环境规范
+开发工具：Android Studio
+编码：UTF-8
+代码格式化：Code Style –&amp;gt;  Right marging:120，选中Wrap when typing reaches right margin ；java Wrapping and Braces Keep when reforma">
+  
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="undefined" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">John Doe</a></h1>
+		</hgroup>
+
+		
+
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+						</div>
+					</nav>
+				</section>
+				
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">John Doe</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img src="undefined" class="js-avatar" style="width: 100%;height: 100%;opacity: 1;">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">John Doe</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-android-development-ocumentation" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/11/25/android-development-ocumentation/" class="article-date">
+  	<time datetime="2015-11-24T16:00:00.000Z" itemprop="datePublished">2015-11-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android客户端开发文档
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/开发文档/">开发文档</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/规范文档/">规范文档</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>version：1.0<br>2015.11.12<br>author：zhongshan</p>
+</blockquote>
+<h2 id="开发环境规范">开发环境规范</h2><ul>
+<li>开发工具：Android Studio</li>
+<li>编码：UTF-8</li>
+<li>代码格式化：Code Style –&gt;  Right marging:120，选中Wrap when typing reaches right margin ；java Wrapping and Braces Keep when reformatting选项中全部取消勾选。其他默认。</li>
+<li>常用插件安装：Setting –&gt;plugins<br>Android BufferKnife Zelezny ：BufferKnife依赖注入代码自动生成。<br>Android Parcelable code generator : 自动生成实现Parceable接口的代码<br>。</li>
+<li>JDK版本：jdk1.7</li>
+</ul>
+<a id="more"></a>
+<h2 id="项目规范：">项目规范：</h2><h3 id="项目结构：">项目结构：</h3><pre><code>- 主工程（app）
+com<span class="class">.xxxx</span>.  ——公司名+项目名（xxxx 公司项目同名）
+            common. ——公共组件模块
+                    api. ——公共API接口相关
+                        XXXConstants<span class="class">.java</span> ——XXX常量
+                    base. ——公共基类（Activity等）
+                    http. ——网络请求基础
+                    model. ——公有数据结构
+                    wedigets. ——自定义控件
+                    utils ——工具包
+                    presenters ——MVP 表现层公共接口
+                    view    —MVP 视图处理层公共接口
+                    interactor  ——MVP 数据处理层公共接口
+            XXXXX.    ——子模块名（n+）
+                    api. ——模块API接口相关（请求、解析）
+                    model. ——模块相关数据结构
+                    activitys. ——模块相关页面
+                    db. ——数据库
+                    presenters. ——MVP 控制处理层
+                        impl. ——实现类 
+                    view. ——MVP 视图处理层
+                    interactor. ——MVP 数据处理层
+                        impl. ——实现类 
+
+- module工程（library）
+          com<span class="class">.android</span><span class="class">.volley</span> ——Volley源码
+         com<span class="class">.xxxx</span><span class="class">.library</span> ——项目基础架构
+</code></pre><ul>
+<li>Activity/Fragment继承结构：<ul>
+<li>所有普通Activity继承BaseActivity</li>
+<li>所有Fragment继承BaseFragment</li>
+<li>所有需要边缘滑动退出的Activity继承BaseSwipeBackActivity</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="命名规范：">命名规范：</h3><blockquote>
+<p>遵循驼峰命名法 . 严禁使用拼音。命名要描述清楚，尽量不要简写。</p>
+</blockquote>
+<ol>
+<li><p>类（class）</p>
+<pre><code>名词，采用大驼峰命名法，尽量避免缩写
+</code></pre><p> 类|描述|例如<br> —|—|—<br> activity(Fragment) 类|Activity为后缀标识|知识详情页：KnowledgeDetialActivity<br> Adapter类|Adapter 为后缀标识|搜索返回数据适配器：SearchResultAdapter<br> 解析类      |RespFactory为后缀标识    | 知识模块解析类KnowledgeRespFactory<br> 公共方法类     | Utils或Manager为后缀标识    | 线程池管理类：ThreadPoolManager 日志工具类：    StringUtils<br> 数据库类    | 以DBHelper后缀标识     |新闻数据库：NewDBHelper<br> Service类     |以Service为后缀标识     |时间服务TimeService<br> BroadcastReceive类    |  以Broadcast为后缀标识| 时间通知TimeBroadcast<br> ContentProvider      | 以Provider为后缀标识<br> 基础类     |以Base开头    |BaseActivity,BaseFragment</p>
+</li>
+<li><p>接口（interface）</p>
+<pre><code>与类相同，大驼峰命名法
+</code></pre></li>
+<li><p>方法（methods）</p>
+<pre><code>动词或动名词，采用小驼峰命名法        
+</code></pre></li>
+<li><p>变量（variables）采用小驼峰命名法。</p>
+<pre><code>   -<span class="ruby">     类中控件名称必须与xml布局id保持一致
+</span>    控件及其id命名：功能描述+控件单词首字母简写 
+    eg：用户头像控件：userAvatarIv
+-<span class="ruby">     类中字段命名<span class="symbol">:</span>
+</span>    (对象描述+集合名称)
+    List&lt;MeetingTopicQuery&gt; meetingTopicQueryList
+    String  username
+    Boolean   isChanged
+    (首字母小写，尽量避免缩写)
+    MeetingTopicQuery meetingTopicQuery
+</code></pre></li>
+<li><p>常量（Constants</p>
+<pre><code>全部大写，下划线命名法，如：IMAGE_LOADER_<span class="built_in">CACHE_PATH</span>
+</code></pre></li>
+<li><p>资源文件命名</p>
+<pre><code>-<span class="ruby">  全部小写，采用下划线命名法，加前缀区分
+</span>-<span class="ruby">  命名模式：activity名称<span class="number">_</span>逻辑名称/common<span class="number">_</span>逻辑名称
+</span>-<span class="ruby">  如果有多种形态如按钮等除外如btn_xx.xml（selector）</span>
+</code></pre></li>
+<li><p>资源布局文件（XML文件/layout布局文件）</p>
+<pre><code>全部小写，采用下划线命名法
+-  contentview命名, Activity默认布局，以去掉后缀的Activity类进行命名。
+   activity_功能模块.<span class="keyword">xml</span>
+   <span class="title">例如：activity_main</span>.xml、activity_more.<span class="keyword">xml</span>
+<span class="title">-  Dialog</span>命名：dialog_描述.<span class="keyword">xml</span>
+    <span class="title">例如：dialog</span> _hint.<span class="keyword">xml</span>
+<span class="title">-  PopupWindow</span>命名：ppw_描述.<span class="keyword">xml</span>
+   <span class="title">例如：ppw</span> _<span class="number">inf</span>o.<span class="keyword">xml</span>
+<span class="title">-  列表项命名listitem_</span>描述.<span class="keyword">xml</span>
+   <span class="title">例如：listitem_city</span>.<span class="keyword">xml</span>   <span class="title">listitem_meeting</span>.<span class="keyword">xml</span>
+<span class="title">-  包含项：include_</span>模块.<span class="keyword">xml</span>
+   <span class="title">例如：include_head</span>.xml、include_bottom.xml
+</code></pre></li>
+</ol>
+<hr>
+<h3 id="注释规范">注释规范</h3><blockquote>
+<p>要求在逻辑比较复杂的地方写清必要的注释。常量及变量的命名基本都需要有注释。</p>
+</blockquote>
+<ol>
+<li><p>类（class）接口(interface)的注释</p>
+<pre><code>在AndroidStudio中 按下面格式 修改<span class="keyword">File</span> Header模板
+/**
+* Author：$<span class="list">{USER}</span>   
+* <span class="keyword">Date</span>：$<span class="list">{YEAR}</span>/$<span class="list">{MONTH}</span>/$<span class="list">{DAY}</span> $<span class="list">{HOUR}</span>:$<span class="list">{MINUTE}</span>      
+* Description：
+*/
+Description中写清楚对此类的描述。
+</code></pre></li>
+<li><p>方法（method）的注释</p>
+<pre><code>统一如下形式：
+/<span class="keyword">*</span><span class="keyword">*</span>
+<span class="keyword">*</span> 方法描述
+<span class="keyword">*</span> <span class="comment">@param 参数1  参数1描述</span>
+<span class="keyword">*</span> <span class="comment">@param 参数2  参数2描述</span>
+<span class="keyword">*</span>/
+</code></pre></li>
+<li><p>变量及常量的注释</p>
+<pre><code>统一如下形式：
+<span class="comment">/**姓名*/</span>
+<span class="keyword">String </span>name<span class="comment">;</span>
+好处是在任何一个调用它的地方，使用<span class="literal">F1</span>查就能查看到变量/常量注释
+</code></pre></li>
+<li><p>语句注释</p>
+<pre><code>统一如下形式：
+<span class="comment">// description</span>
+</code></pre></li>
+</ol>
+<hr>
+<h3 id="通用组件使用说明">通用组件使用说明</h3><ol>
+<li><p>常用类</p>
+<pre><code>-<span class="ruby"> 避免相同功能 的类或方法 重复添加。
+</span>-<span class="ruby"> 当需要添加某一个类时，先去对应的包下的help.txt中找，查看相同功能是否已存在。
+</span>-<span class="ruby"> utils类 统一放在common包下utils中。
+</span>-<span class="ruby"> wedigets类 应用的自定义控件均在此包下，每添加一个需要的控件时，都应该先去包下的help.text中查找，如果不存在才可添加。
+</span>-<span class="ruby"> 类似的还有上传下载，服务，广播等。</span>
+</code></pre></li>
+<li><p>Fresco图片加载库</p>
+<blockquote>
+<p>GitHub地址 <a href="https://github.com/facebook/fresco" target="_blank" rel="external">Fresco</a></p>
+</blockquote>
+<pre><code>-<span class="ruby"> gradle中配置 compile <span class="string">'com.facebook.fresco:fresco:0.8.1+'</span>
+</span>-<span class="ruby"> 只在<span class="constant">Application</span>中初始化
+</span>-<span class="ruby"> 需要用到<span class="constant">Fresco</span>中<span class="constant">View</span>控件的自定义属性时需要在布局根目录添加
+</span>  命名空间xmlns:fresco="http://schemas.android.com/apk/res-auto"
+</code></pre></li>
+<li>ButterKnife 依赖注解注入视图    <blockquote>
+<p>GitHub地址 <a href="https://github.com/JakeWharton/butterknife" target="_blank" rel="external">ButterKnife</a></p>
+</blockquote>
+</li>
+<li>Material-Dialogs  Material向下兼容库<blockquote>
+<p>GitHub地址 <a href="https://github.com/afollestad/material-dialogs" target="_blank" rel="external">Material-Dialogs</a></p>
+</blockquote>
+</li>
+<li><p>EventBus 事件总线</p>
+<blockquote>
+<p>GitHub地址 <a href="https://github.com/greenrobot/EventBus" target="_blank" rel="external">EventBus</a></p>
+</blockquote>
+<pre><code>- 已经将EventBus集成到项目框架中
+- boolean <span class="function"><span class="title">isBindEventBusHere</span><span class="params">()</span></span> ：是否使用EventBus
+- <span class="function"><span class="title">onEventComming</span><span class="params">(EventCenter eventCenter)</span></span> : 订阅的数据
+</code></pre></li>
+<li><p>SystemBarTint 修改系统SmartBar颜色（以设置沉浸式状态栏）</p>
+<blockquote>
+<p>GitHub地址 <a href="https://github.com/jgilfelt/SystemBarTint" target="_blank" rel="external">SystemBarTint</a></p>
+</blockquote>
+<pre><code>Activity中使用只需设置<span class="function"><span class="title">isApplyKitKatTranslucency</span><span class="params">()</span></span> return true
+</code></pre></li>
+<li><p>Volley + OKHttp + gson 网络请求架构</p>
+<blockquote>
+<p>使用MVP的架构后，以下形式就废弃了</p>
+</blockquote>
+<pre><code>相应模块的网络请求，写在模块对应包下api包中，如com<span class="class">.xxxx</span><span class="class">.home</span><span class="class">.api</span>，
+请求工具类命名为 模块名+RequestUtils.java，
+请求方法命名为do+请求功能+<span class="function"><span class="title">Request</span><span class="params">(Context context, final ResponseListener responseListener，Object params…)</span></span>。
+onStop中取消请求，调用.<span class="function"><span class="title">cancelAll</span><span class="params">(Tag)</span></span>。
+</code></pre></li>
+</ol>
+<hr>
+<h2 id="MVP模式">MVP模式</h2><h3 id="MVP_简介">MVP 简介</h3><ul>
+<li><p>按照MVP模式的设计思想，实现View和Model的解耦，弱化Activity/Fragment的功能。</p>
+</li>
+<li><p>Presenter负责逻辑的处理，Model负责提供数据，View负责显示数据。View和Model完全分离，其交互在Presenter中进行。</p>
+</li>
+<li>Presenter是通过View的接口与View进行交互（给View提供数据），保证在View改变时，Presenter不变。</li>
+<li>Presenter也是通过Model的接口与Model进行交互（获取提供的数据）。</li>
+</ul>
+<hr>
+<h4 id="MVP_的使用流程">MVP 的使用流程</h4><blockquote>
+<p>MVP模式目前还没有特定的规范，凡是符合上述思想的均可称为MVP。Demo可参考项目中DemoActivity。</p>
+</blockquote>
+<ol>
+<li><p>定义BasePresenter（还可以细分为BaseListPresenter等），BaseView，BaseModel接口。这些接口为M/V/P各模块所共有的特性，比如BasePresenter中定义方法getData()(获取数据)，BaseView中定义showError等。</p>
+</li>
+<li><p>Presenter层：定义Presenter类。Presenter类主要完成业务逻辑。比如，当前Activity功能是列表展示数据，item的选择，删除，点击item跳转等，就可以为Presenter提供以上一些方法。</p>
+</li>
+<li>Model层：定义Model类。职责是获取数据，处理数据，提供数据。所有的数据任务都由这一层完成。</li>
+<li>View层：定义View类。View类主要实现View的基本功能，如列表，功能是刷新数据，加载数据，操作数据等，其中的数据不用View关心，只需方法参数中传递数据给View提供就行。View得到数据后的具体操作还是交由Activity处理（比如这里用Adapter处理列表数据，其他情况也可以交由第三方处理，这样避免Presenter和View、Model的耦合性过高）。</li>
+</ol>
+<hr>
+<h3 id="Demo中的示例如下：">Demo中的示例如下：</h3><ol>
+<li><p>Presenter：</p>
+<p> SearchResultListPresenterImpl 为 SearchResultListPresenter的实现类</p>
+<p> SearchResultListPresenterImpl(Context mContext, SearchResultListView resultListView)</p>
+<p> 需要在Activity中获取Context，并实现SearchResultListView接口。</p>
+</li>
+<li><p>Model：</p>
+<p> SerchRresultListInteratorImpl 为 CommenListInterator的实现类，主要是获取数据。</p>
+<p> 获取数据所需要的参数，通过Presenter提供。</p>
+</li>
+<li><p>View：</p>
+<p> SearchResultListView 只是个接口，由Activity调用回调方法。</p>
+<p> 提供数据的展示，只有等数据获取到之后才能拿到数据，这一交互过程在Presenter中进行，由    Presenter控制。</p>
+</li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/11/30/android-gradle-summary/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          gradle在android中的用法概要
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/11/24/mvp-file/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">MVP模式</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 John Doe
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script>
+	var yiliaConfig = {
+		fancybox: undefined,
+		mathjax: undefined,
+		animate: undefined,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: undefined
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+  </div>
+</body>
+</html>
