@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-08-25T19:20:14.361Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36" etag="rx7JaO-RlvcOYLlTXSVN" version="20.2.7" type="github">
+<mxfile host="app.diagrams.net" modified="2022-08-25T19:23:38.334Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36" etag="RjiShrNtG0-XSh1qOyn9" version="20.2.7" type="github">
   <diagram id="cf2r2SaaGhS8XV817-tS" name="第 1 页">
     <mxGraphModel dx="1234" dy="793" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -19,7 +19,7 @@
         <mxCell id="uyzYFgQdXdeEzOQn8JSZ-2" value="交易流插件" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="520" y="280" width="110" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="uyzYFgQdXdeEzOQn8JSZ-3" value="业务模块A、B、C..." style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="uyzYFgQdXdeEzOQn8JSZ-3" value="业务模块首页、工作台、搜推..." style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="280" y="280" width="170" height="60" as="geometry" />
         </mxCell>
         <mxCell id="uyzYFgQdXdeEzOQn8JSZ-4" value="公共库" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
